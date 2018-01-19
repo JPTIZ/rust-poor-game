@@ -7,6 +7,7 @@ use sfml::window::{
     Style,
 };
 
+
 fn main() {
     let context_settings = ContextSettings{
         antialiasing_level: 0,
@@ -14,7 +15,7 @@ fn main() {
     };
 
     let mut window = RenderWindow::new(
-        (640, 480),
+        (800, 600),
         "RPG",
         Style::CLOSE,
         &context_settings
@@ -24,3 +25,4 @@ fn main() {
         window.display();
     }
 }
+

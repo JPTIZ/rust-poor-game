@@ -1,8 +1,6 @@
 [package]
-name = "rpg"
+name = "game"
 version = "0.1.0"
 authors = ["João Paulo Taylor Ienczak Zanette <jpaulotiz@gmail.com>"]
 
 [dependencies]
-game = { path = "game" }
-sfml = "0.14.0"
