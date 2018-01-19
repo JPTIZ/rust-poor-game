@@ -1,4 +1,5 @@
 extern crate sfml;
+extern crate game;
 
 use sfml::graphics::RenderWindow;
 
