@@ -1,15 +1,31 @@
+/*
 extern crate sfml;
-extern crate game;
 
 use sfml::graphics::RenderWindow;
 
 use sfml::window::{
     ContextSettings,
+    Event,
     Style,
 };
+*/
+
+extern crate game;
+
+use self::game::Game;
+use self::game::scenes::run_scene;
+
+mod scenes;
+
+use self::scenes::MainScene;
 
 
 fn main() {
+    let mut game = Game::new();
+    let mut scene = MainScene::new(&mut game);
+    run_scene(&mut scene);
+
+    /*
     let context_settings = ContextSettings{
         antialiasing_level: 0,
         ..Default::default()
@@ -23,7 +39,17 @@ fn main() {
         );
 
     while window.is_open() {
+        while let Some(event) = window.poll_event() {
+            match event {
+                Event::Closed => window.close(),
+                Event::KeyPressed { code, .. } => {
+                    println!("pressed {key:?}", key=code);
+                },
+                _ => {},
+            }
+        }
         window.display();
     }
+    */
 }
 

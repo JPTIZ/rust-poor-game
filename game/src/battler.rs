@@ -12,7 +12,11 @@ pub enum Status {
 
 impl Status {
     pub fn values() -> Iter<'static, Status> {
-        static STATUS: [Status; 3] = [Status::Dead, Status::Stun, Status::Poison];
+        static STATUS: [Status; 3] = [
+            Status::Dead,
+            Status::Stun,
+            Status::Poison
+        ];
         STATUS.into_iter()
     }
 }
