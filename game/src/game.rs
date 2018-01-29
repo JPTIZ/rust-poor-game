@@ -11,5 +11,13 @@ impl Game {
             graphics: Graphics::new((640, 480)),
         }
     }
+
+    pub fn update(&mut self) {
+        println!("[Input] Updating input");
+    }
+
+    pub fn refresh(&mut self) {
+        self.graphics.show();
+    }
 }
 
