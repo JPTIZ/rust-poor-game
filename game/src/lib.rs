@@ -1,13 +1,7 @@
 pub mod battler;
 pub mod scenes;
-pub mod game;
+pub mod graphics;
+mod game;
 
-pub struct Game {
-}
-
-impl Game {
-    pub fn new() -> Game {
-        Game{}
-    }
-}
+pub use game::Game;
 

@@ -2,48 +2,50 @@ extern crate game;
 
 use self::game::Game;
 use self::game::scenes::GameScene;
-use self::game::scenes::run_scene;
+use self::game::scenes::run;
 
-struct TestScene<'game> {
-    pub game: &'game mut Game,
+struct TestScene {
 }
 
-impl<'game> GameScene for TestScene<'game> {
+impl GameScene for TestScene {
     fn start(&mut self) {
         println!("Starting TestScene");
     }
 
-    fn update(&mut self) {
+    fn update(&mut self, _: &mut Game) {
         println!("Updating TestScene");
     }
 
     fn terminate(&mut self) {
         println!("Terminating TestScene");
     }
-}
 
-pub struct MainScene<'game> {
-    game: &'game mut Game,
-}
-
-impl<'game> MainScene<'game> {
-    pub fn new(game: &mut Game) -> MainScene {
-        MainScene{game}
+    fn running(&self) -> bool {
+        false
     }
 }
 
-impl<'game> GameScene for MainScene<'game> {
+#[allow(dead_code)]
+#[derive(Default)]
+pub struct MainScene {
+}
+
+impl GameScene for MainScene {
     fn start(&mut self) {
         println!("Starting MainScene");
     }
 
-    fn update(&mut self) {
+    fn update(&mut self, mut game: &mut Game) {
         println!("Updating MainScene");
-        let mut subscene = TestScene{game: &mut self.game};
-        run_scene(&mut subscene);
+        let mut subscene = TestScene{};
+        run(&mut subscene, &mut game);
     }
 
     fn terminate(&mut self) {
         println!("Terminating MainScene");
+    }
+
+    fn running(&self) -> bool {
+        true
     }
 }
