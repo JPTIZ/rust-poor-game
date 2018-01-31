@@ -2,17 +2,17 @@ use super::game::Game;
 
 
 pub trait GameScene {
-    fn start(&mut self);
+    fn start(&mut self, &mut Game);
     fn update(&mut self, &mut Game);
-    fn terminate(&mut self);
+    fn terminate(&mut self, &mut Game);
     fn running(&self) -> bool;
 }
 
 
 pub fn run(scene: &mut GameScene, mut game: &mut Game) {
-    scene.start();
+    scene.start(&mut game);
     while scene.running() {
         scene.update(&mut game);
     }
-    scene.terminate();
+    scene.terminate(&mut game);
 }

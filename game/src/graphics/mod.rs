@@ -7,7 +7,7 @@ use self::sfml::window::Style;
 
 pub struct Graphics {
     pub size: (u32, u32),
-    window: RenderWindow,
+    pub window: RenderWindow,
 }
 
 impl Default for Graphics {
@@ -16,12 +16,15 @@ impl Default for Graphics {
 
         let context_settings = ContextSettings::default();
 
-        let window = RenderWindow::new(
+        let mut window = RenderWindow::new(
             size,
             "RPG",
-            Style::CLOSE,
+            Style::DEFAULT,
             &context_settings
             );
+
+        window.set_visible(false);
+
         Graphics{size,
                  window}
     }
@@ -37,8 +40,9 @@ impl Graphics {
         self.window.set_visible(true);
     }
 
-    pub fn refresh(&self) {
+    pub fn refresh(&mut self) {
         println!("[Graphics] Refreshing");
+        self.window.display();
     }
 
     pub fn hide(&self) {
