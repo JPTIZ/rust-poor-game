@@ -23,7 +23,8 @@ impl GameScene for MainScene {
 
     fn update(&mut self, game: &mut Game) {
         println!("Updating MainScene");
-        game.refresh();
+        game.update();
+        self.running = game.running();
     }
 
     fn terminate(&mut self, _game: &mut Game) {

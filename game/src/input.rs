@@ -11,7 +11,7 @@ pub struct Input {
 }
 
 impl Input {
-    fn pressed(&self, key: &Key) -> bool {
+    pub fn pressed(&self, key: &Key) -> bool {
         self.time[&key] > 0
     }
 }

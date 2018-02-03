@@ -9,12 +9,14 @@ use input::Input;
 pub struct Game {
     pub graphics: Graphics,
     pub input: Input,
+    running: bool,
 }
 
 impl Game {
     pub fn new() -> Game {
         Game{
             graphics: Graphics::new((640, 480)),
+            running: true,
             ..Default::default()
         }
     }
@@ -24,11 +26,14 @@ impl Game {
         let window = &mut self.graphics.window;
         while let Some(event) = window.poll_event() {
             match event {
-                Event::Closed => window.close(),
-                Event::KeyPressed{code,..} => {
-                    *self.input.time.get_mut(&code).unwrap() += 1;
+                Event::Closed => {
+                    println!("[Game] Closing...");
+                    window.close();
+                    self.running = false;
                 },
-
+                Event::KeyPressed{code,..} => {
+                    *self.input.time.entry(code).or_insert(0) += 1;
+                },
                 _ => {},
             }
         }
@@ -36,6 +41,13 @@ impl Game {
 
     pub fn refresh(&mut self) {
         self.graphics.refresh();
+    }
+
+    pub fn running(&self) -> bool {
+        self.running
+    }
+
+    pub fn quit() {
     }
 }
 

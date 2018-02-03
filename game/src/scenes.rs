@@ -11,7 +11,7 @@ pub trait GameScene {
 
 pub fn run(scene: &mut GameScene, mut game: &mut Game) {
     scene.start(&mut game);
-    while scene.running() {
+    while scene.running() && game.running() {
         scene.update(&mut game);
     }
     scene.terminate(&mut game);
